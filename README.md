@@ -75,6 +75,26 @@ Run the bundled example for a full install plan:
 cargo run --example horn_setup
 ```
 
+## Command-line tool
+
+The [`cli/`](cli) directory holds a small `trainhorn` command built on this
+crate. It is packaged as a snap from [`snap/snapcraft.yaml`](snap/snapcraft.yaml)
+(`sudo snap install trainhorn`), or build it with Cargo:
+
+```sh
+cargo install --path cli
+trainhorn db --source 150 --ref-ft 10 --at-ft 100        # 130 dB
+trainhorn distance --source 150 --ref-ft 10 --target 85
+trainhorn combine 118 118                                # 121 dB
+trainhorn tank --gallons 5 --start 150 --cutoff 110 --horn-cfm 10 --blast 2
+trainhorn refill --gallons 5 --cut-in 110 --cut-out 150 --cfm 1.0
+trainhorn wire --amps 30 --length-ft 12 --volts 12       # 6 AWG
+trainhorn vdrop --awg 8 --amps 30 --length-ft 12 --volts 12
+trainhorn help
+```
+
+Exit code 0 on success, 1 for an out-of-range value, 2 for a usage error.
+
 ## Models and limits
 
 | Module | Formula | Main assumptions |
@@ -92,6 +112,7 @@ lower because of ground reflection, wind and barriers.
 ```sh
 cargo test     # unit tests, the ported Python reference vectors, and doc tests
 cargo clippy --all-targets -- -D warnings
+cd cli && cargo test   # command-line tool: every command, errors, exit codes
 ```
 
 ## Links

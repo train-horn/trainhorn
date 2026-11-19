@@ -12,6 +12,6 @@ repository = "https://github.com/train-horn/trainhorn"
 documentation = "https://docs.rs/trainhorn"
 keywords = ["acoustics", "decibel", "inverse-square", "awg", "air-horn"]
 categories = ["science", "mathematics"]
-exclude = ["/.github", "/target"]
+exclude = ["/.github", "/target", "/cli", "/snap"]
 
 [dependencies]
