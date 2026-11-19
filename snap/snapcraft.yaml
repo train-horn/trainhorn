@@ -1,0 +1,54 @@
+name: trainhorn
+base: core24
+version: '1.0.0'
+title: Train Horn calculators
+summary: Train horn setup calculators - dB at distance, tank time, wire size
+description: |
+  trainhorn is a small command-line tool for planning a train horn install
+  on a truck, car or boat. It works offline and needs no permissions.
+
+  Commands:
+
+  * db - sound level at a distance (inverse-square law), with optional
+    atmospheric absorption by octave band
+  * distance - how far away the level falls to a target dB
+  * combine - total level of several horns sounding together
+  * tank - horn time from one tank of air, and the number of full blasts
+  * refill - compressor time to refill the tank (constant or linear flow)
+  * wire - smallest copper AWG gauge for a voltage-drop budget
+  * vdrop - voltage drop of a given AWG copper run
+
+  Examples:
+
+      trainhorn db --source 150 --ref-ft 10 --at-ft 100
+      trainhorn tank --gallons 5 --start 150 --cutoff 110 --horn-cfm 10 --blast 2
+      trainhorn wire --amps 30 --length-ft 12 --volts 12
+
+  Results are free-field engineering estimates, not measurements and not
+  a legal noise assessment. Wire sizing checks voltage drop only.
+
+  The calculations come from the open-source trainhorn Rust crate
+  (MIT). Browser versions of these calculators and train horn guides are
+  on Train Horn, an independent reference: https://train-horn.com/
+license: MIT
+website: https://train-horn.com/
+contact: mailto:trainhornsmaster@gmail.com
+source-code: https://github.com/train-horn/trainhorn
+issues: https://github.com/train-horn/trainhorn/issues
+icon: snap/gui/trainhorn.png
+grade: stable
+confinement: strict
+
+platforms:
+  amd64:
+  arm64:
+
+parts:
+  trainhorn:
+    plugin: rust
+    source: .
+    rust-path: [cli]
+
+apps:
+  trainhorn:
+    command: bin/trainhorn
