@@ -1,0 +1,17 @@
+[package]
+name = "trainhorn"
+version = "1.0.0"
+edition = "2021"
+rust-version = "1.65"
+description = "Dependency-free calculators for train horn setups: sound level vs distance (inverse-square law), air tank runtime and compressor recovery, copper AWG voltage drop."
+authors = ["Train Horn <trainhornsmaster@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://train-horn.com/"
+repository = "https://github.com/train-horn/trainhorn"
+documentation = "https://docs.rs/trainhorn"
+keywords = ["acoustics", "decibel", "inverse-square", "awg", "air-horn"]
+categories = ["science", "mathematics"]
+exclude = ["/.github", "/target"]
+
+[dependencies]
